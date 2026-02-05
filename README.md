@@ -30,34 +30,36 @@ Essa separação facilita manutenção, escalabilidade e testes independentes.
 
 ### ▶️ Como executar o backend
 
-1. Acesse a pasta:
-```bash
+- Acesse a pasta:
+bash
 cd API-and-web-interface-testing/backend
 
-2. Instale as dependencias:
+- Instale as dependencias:
 python -m pip install --user -r requirements.txt
 
-3. Configure a conexão com o banco:
+- Configure a conexão com o banco:
 DATABASE_URL = "postgresql://postgres:SENHA@localhost:5432/teste_intuitive"
 
-4. Inicie a API:
+- Inicie a API:
 python -m uvicorn main:app --reload
 
-5. API estará disponível em:
+- API estará disponível em:
 http://localhost:8000
 
-## Rotas API
+---
 
-Detalhes de uma Operadora
+### Rotas API
+
+- Detalhes de uma Operadora
 GET /api/operadoras?page=1&limit=10
 
-Listar Operadora
+- Listar Operadora
 GET /api/operadoras/{cnpj}
 
-Despesas
+- Despesas
 GET /api/operadoras/{cnpj}/despesas
 
-Estatistícas
+- Estatistícas
 GET /api/estatisticas
 
 ## Trade-offs Técnicos
@@ -75,9 +77,9 @@ No frontend, a busca e o filtro foram implementados no servidor, evitando o carr
 Local do arquivo:
 API-and-web-interface-testing/postman/postman_collection.json
 
--Requisições Configuradas
--Respostas Reais
--Parametros e Urls Documentados;
+- Requisições Configuradas
+- Respostas Reais
+- Parametros e Urls Documentados;
 
 ## Autor
 Thiago Ramos.
