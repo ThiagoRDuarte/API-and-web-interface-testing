@@ -1,0 +1,224 @@
+{
+  "info": {
+    "_postman_id": "81a8a63d-f185-4bf9-a8a4-7516c2b954ea",
+    "name": "Teste API - Operadoras",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Listar Operadoras",
+      "id": "6624090a-fd61-4b57-afb6-3e597f0c90f0",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": [
+        {
+          "id": "1acab67f-121f-4759-8b5b-eb41c179759d",
+          "name": "200 OK -Sucesso",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/operadoras",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "operadoras"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "date",
+              "value": "Thu, 05 Feb 2026 01:24:50 GMT"
+            },
+            {
+              "key": "server",
+              "value": "uvicorn"
+            },
+            {
+              "key": "content-length",
+              "value": "237"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"cnpj\": \"12345678000199\",\n        \"razao_social\": \"Operadora Exemplo SA\",\n        \"uf\": \"SP\"\n    },\n    {\n        \"cnpj\": \"98765432000188\",\n        \"razao_social\": \"Plano SaÃºde Brasil LTDA\",\n        \"uf\": \"RJ\"\n    },\n    {\n        \"cnpj\": \"11222333000144\",\n        \"razao_social\": \"SaÃºde Total AutogestÃ£o\",\n        \"uf\": \"MG\"\n    }\n]"
+        }
+      ]
+    },
+    {
+      "name": "Detalhe da Operadora",
+      "id": "243370fa-d123-4874-b8a9-345860555253",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": [
+        {
+          "id": "dcdcd58a-4dc1-4181-9198-3b0bb6d894ae",
+          "name": "200 OK - Sucesso",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/operadoras/12345678000199",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "operadoras",
+                "12345678000199"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "date",
+              "value": "Thu, 05 Feb 2026 01:48:20 GMT"
+            },
+            {
+              "key": "server",
+              "value": "uvicorn"
+            },
+            {
+              "key": "content-length",
+              "value": "73"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"cnpj\": \"12345678000199\",\n    \"razao_social\": \"Operadora Exemplo SA\",\n    \"uf\": \"SP\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Despesas da Operadora",
+      "id": "5e9e5e65-a82c-4704-8857-95c748fbae90",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": [
+        {
+          "id": "e754e1ce-e5bb-49a0-9b31-b11a67adfc0a",
+          "name": "200 OK - Sucesso",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/operadoras/12345678000199/despesas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "operadoras",
+                "12345678000199",
+                "despesas"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "date",
+              "value": "Thu, 05 Feb 2026 02:05:53 GMT"
+            },
+            {
+              "key": "server",
+              "value": "uvicorn"
+            },
+            {
+              "key": "content-length",
+              "value": "119"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"valor_despesas\": 150000.5,\n        \"id\": 1,\n        \"cnpj\": \"12345678000199\"\n    },\n    {\n        \"valor_despesas\": 230000,\n        \"id\": 2,\n        \"cnpj\": \"12345678000199\"\n    }\n]"
+        }
+      ]
+    },
+    {
+      "name": "Estatisticas",
+      "id": "2fe5edb5-a6d6-466b-8290-1f595e42f470",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": [
+        {
+          "id": "0dc55c2e-ec0d-4dc0-9b7c-650b3241e0b6",
+          "name": "200 OK - Sucesso",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/estatisticas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "estatisticas"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "date",
+              "value": "Thu, 05 Feb 2026 02:06:32 GMT"
+            },
+            {
+              "key": "server",
+              "value": "uvicorn"
+            },
+            {
+              "key": "content-length",
+              "value": "258"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"total_despesas\": 643001.5,\n    \"media_despesas\": 128600.3,\n    \"top_5_operadoras\": [\n        {\n            \"razao_social\": \"Operadora Exemplo SA\",\n            \"total\": 380000.5\n        },\n        {\n            \"razao_social\": \"Plano SaÃºde Brasil LTDA\",\n            \"total\": 218001\n        },\n        {\n            \"razao_social\": \"SaÃºde Total AutogestÃ£o\",\n            \"total\": 45000\n        }\n    ]\n}"
+        }
+      ]
+    }
+  ]
+}

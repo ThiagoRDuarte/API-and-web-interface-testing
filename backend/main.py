@@ -2,6 +2,10 @@ from fastapi import FastAPI, Depends, Query
 from sqlalchemy.orm import Session
 from database import SessionLocal
 import models
+from models import Operadora, DespesasConsolidadas
+from sqlalchemy import func
+from fastapi import Depends
+
 
 app = FastAPI(title="API Operadoras")
 
@@ -34,15 +38,42 @@ def detalhe_operadora(cnpj: str, db: Session = Depends(get_db)):
         .first()
 
 @app.get("/api/operadoras/{cnpj}/despesas")
-def despesas_operadora(cnpj: str, db: Session = Depends(get_db)):
-    return db.query(models.DespesaConsolidada)\
-        .filter_by(cnpj=cnpj)\
+def get_despesas_operadora(cnpj: str, db: Session = Depends(get_db)):
+    despesas = (
+        db.query(DespesasConsolidadas)
+        .filter(DespesasConsolidadas.cnpj == cnpj)
         .all()
+    )
+
+    return despesas or []
+
 
 @app.get("/api/estatisticas")
-def estatisticas(db: Session = Depends(get_db)):
-    return db.execute("""
-        SELECT uf, SUM(total_despesas)
-        FROM despesas_agregadas
-        GROUP BY uf
-    """).fetchall()
+def get_estatisticas(db: Session = Depends(get_db)):
+    total = db.query(func.sum(DespesasConsolidadas.valor_despesas)).scalar()
+    media = db.query(func.avg(DespesasConsolidadas.valor_despesas)).scalar()
+
+    top_5 = (
+        db.query(
+            Operadora.razao_social,
+            func.sum(DespesasConsolidadas.valor_despesas).label("total")
+        )
+        .join(
+            DespesasConsolidadas,
+            Operadora.cnpj == DespesasConsolidadas.cnpj
+        )
+        .group_by(Operadora.razao_social)
+        .order_by(func.sum(DespesasConsolidadas.valor_despesas).desc())
+        .limit(5)
+        .all()
+    )
+
+    return {
+        "total_despesas": float(total or 0),
+        "media_despesas": float(media or 0),
+        "top_5_operadoras": [
+            {"razao_social": r, "total": float(t)}
+            for r, t in top_5
+        ]
+    }
+
